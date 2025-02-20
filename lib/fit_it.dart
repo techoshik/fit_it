@@ -7,7 +7,7 @@ export 'package:fit_it/src/fit_layout.dart';
 export 'package:fit_it/src/fit_scaffold.dart';
 export 'package:fit_it/src/fit_size.dart';
 
-class FitIt {
+abstract class FitIt {
   static FitBreakpoints breakpoints = (
     mobile: 450,
     tablet: 800,

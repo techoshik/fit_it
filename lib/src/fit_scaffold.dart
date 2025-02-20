@@ -39,8 +39,8 @@ class FitScaffold extends StatelessWidget {
     this.leftNavigationVisibleOn,
     this.rightNavigationVisibleOn,
     this.bottomNavigationVisibleOn,
-    this.leftNavigationWidth = 300,
-    this.rightNavigationWidth = 250,
+    this.leftNavigationWidth = 250,
+    this.rightNavigationWidth = 200,
     required this.body,
   });
 
