@@ -49,6 +49,8 @@ class FitScaffold extends StatelessWidget {
     final size = FitIt.getSize(context);
     final showAppBar =
         (appBarVisibleOn ?? FitIt.appBarVisibleOn).contains(size);
+    final showDrawer =
+        (drawerVisibleOn ?? FitIt.drawerVisibleOn).contains(size);
     final showBottomBar =
         (bottomNavigationVisibleOn ?? FitIt.bottomNavigationBarVisibleOn)
             .contains(size);
@@ -61,6 +63,7 @@ class FitScaffold extends StatelessWidget {
 
     return Scaffold(
       appBar: showAppBar ? appBar : null,
+      drawer: showDrawer ? drawer : null,
       bottomNavigationBar: showBottomBar ? bottomNavigationBar : null,
       body: Row(
         mainAxisSize: MainAxisSize.max,
