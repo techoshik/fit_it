@@ -23,6 +23,49 @@ enum FitSize {
   bool get isLaptopOrBelow => isLaptop || isTabletOrBelow;
   bool get isDesktopOrBelow => isDesktop || isLaptopOrBelow;
 
+  T map<T>({
+    required T Function() mobile,
+    required T Function() tablet,
+    required T Function() laptop,
+    required T Function() desktop,
+    required T Function() desktopLarge,
+  }) {
+    switch (this) {
+      case FitSize.mobile:
+        return mobile();
+      case FitSize.tablet:
+        return tablet();
+      case FitSize.laptop:
+        return laptop();
+      case FitSize.desktop:
+        return desktop();
+      case FitSize.desktopLarge:
+        return desktopLarge();
+    }
+  }
+
+  T maybeMap<T>({
+    required T Function() orElse,
+    T Function()? mobile,
+    T Function()? tablet,
+    T Function()? laptop,
+    T Function()? desktop,
+    T Function()? desktopLarge,
+  }) {
+    switch (this) {
+      case FitSize.mobile:
+        return mobile?.call() ?? orElse();
+      case FitSize.tablet:
+        return tablet?.call() ?? orElse();
+      case FitSize.laptop:
+        return laptop?.call() ?? orElse();
+      case FitSize.desktop:
+        return desktop?.call() ?? orElse();
+      case FitSize.desktopLarge:
+        return desktopLarge?.call() ?? orElse();
+    }
+  }
+
   static FitSize parse(double width, FitBreakpoints points) {
     if (width <= points.mobile) return FitSize.mobile;
     if (width <= points.tablet) return FitSize.tablet;
