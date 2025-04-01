@@ -38,4 +38,8 @@ abstract class FitIt {
     final width = MediaQuery.of(context).size.width;
     return FitSize.parse(width, FitIt.breakpoints);
   }
+
+  static Size getWindowSize(BuildContext context) {
+    return MediaQuery.of(context).size;
+  }
 }
