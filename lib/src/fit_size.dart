@@ -1,4 +1,3 @@
-import 'package:fit_it/src/fit_breakpoints.dart';
 import 'package:fit_it/fit_it.dart';
 
 enum FitSize {
@@ -66,7 +65,13 @@ enum FitSize {
     }
   }
 
-  static FitSize parse(double width, FitBreakpoints points) {
+  ///
+  /// Use this method to parse the screen size from a width.
+  /// Use default breakpoints if none are provided.
+  /// The default breakpoints are: [FitIt.breakpoints]
+  ///
+  static FitSize parse(double width, {FitBreakpoints? points}) {
+    points ??= FitIt.breakpoints;
     if (width <= points.mobile) return FitSize.mobile;
     if (width <= points.tablet) return FitSize.tablet;
     if (width <= points.laptop) return FitSize.laptop;

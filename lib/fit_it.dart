@@ -6,6 +6,7 @@ export 'package:fit_it/src/fit_breakpoints.dart';
 export 'package:fit_it/src/fit_layout.dart';
 export 'package:fit_it/src/fit_scaffold.dart';
 export 'package:fit_it/src/fit_size.dart';
+export 'package:fit_it/src/use_fit_size.dart';
 
 abstract class FitIt {
   static FitBreakpoints breakpoints = (
@@ -33,13 +34,4 @@ abstract class FitIt {
   static List<FitSize> bottomNavigationBarVisibleOn = [
     FitSize.mobile,
   ];
-
-  static FitSize getSize(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
-    return FitSize.parse(width, FitIt.breakpoints);
-  }
-
-  static Size getWindowSize(BuildContext context) {
-    return MediaQuery.of(context).size;
-  }
 }

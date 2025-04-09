@@ -19,7 +19,7 @@ class FitLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = FitIt.getSize(context);
+    final size = useFitSize();
     Widget? child;
 
     switch (size) {

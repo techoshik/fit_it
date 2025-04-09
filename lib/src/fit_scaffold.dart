@@ -46,7 +46,8 @@ class FitScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = FitIt.getSize(context);
+    final size = useFitSize();
+
     final showAppBar =
         (appBarVisibleOn ?? FitIt.appBarVisibleOn).contains(size);
     final showDrawer =
