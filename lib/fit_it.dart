@@ -1,6 +1,5 @@
 import 'package:fit_it/src/fit_breakpoints.dart';
 import 'package:fit_it/src/fit_size.dart';
-import 'package:flutter/material.dart';
 
 export 'package:fit_it/src/fit_breakpoints.dart';
 export 'package:fit_it/src/fit_layout.dart';

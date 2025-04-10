@@ -1,7 +1,8 @@
 import 'package:fit_it/fit_it.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class FitScaffold extends StatelessWidget {
+class FitScaffold extends HookConsumerWidget {
   final PreferredSizeWidget? appBar;
   final Widget? drawer;
   final Widget? leftNavigation;
@@ -45,7 +46,7 @@ class FitScaffold extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final size = useFitSize();
 
     final showAppBar =
