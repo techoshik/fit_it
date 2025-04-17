@@ -64,6 +64,7 @@ class FitScaffold extends HookConsumerWidget {
             .contains(size);
 
     return Scaffold(
+      key: super.key,
       appBar: showAppBar ? appBar : null,
       drawer: showDrawer ? drawer : null,
       bottomNavigationBar: showBottomBar ? bottomNavigationBar : null,
