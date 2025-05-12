@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class FitScaffold extends HookConsumerWidget {
-  final Key? key;
   final PreferredSizeWidget? appBar;
   final Widget? drawer;
   final Widget? leftNavigation;
@@ -30,7 +29,7 @@ class FitScaffold extends HookConsumerWidget {
   final double rightNavigationWidth;
 
   const FitScaffold({
-    this.key,
+    super.key,
     this.appBar,
     this.drawer,
     this.leftNavigation,
@@ -65,7 +64,7 @@ class FitScaffold extends HookConsumerWidget {
             .contains(size);
 
     return Scaffold(
-      key: this.key,
+      key: super.key,
       appBar: showAppBar ? appBar : null,
       drawer: showDrawer ? drawer : null,
       bottomNavigationBar: showBottomBar ? bottomNavigationBar : null,
