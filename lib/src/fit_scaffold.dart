@@ -2,7 +2,11 @@ import 'package:fit_it/fit_it.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+final fitScaffoldDrawerProvider = StateProvider<DateTime?>((ref) => null);
+
 class FitScaffold extends HookConsumerWidget {
+  final _key = GlobalKey<ScaffoldState>();
+
   final PreferredSizeWidget? appBar;
   final Widget? drawer;
   final Widget? leftNavigation;
@@ -28,8 +32,7 @@ class FitScaffold extends HookConsumerWidget {
   final double leftNavigationWidth;
   final double rightNavigationWidth;
 
-  const FitScaffold({
-    super.key,
+  FitScaffold({
     this.appBar,
     this.drawer,
     this.leftNavigation,
@@ -49,6 +52,12 @@ class FitScaffold extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final size = useFitSize();
 
+    ref.listen(fitScaffoldDrawerProvider, (previous, next) {
+      if (next != null) {
+        _key.currentState?.openDrawer();
+      }
+    });
+
     final showAppBar =
         (appBarVisibleOn ?? FitIt.appBarVisibleOn).contains(size);
     final showDrawer =
@@ -64,7 +73,7 @@ class FitScaffold extends HookConsumerWidget {
             .contains(size);
 
     return Scaffold(
-      key: super.key,
+      key: _key,
       appBar: showAppBar ? appBar : null,
       drawer: showDrawer ? drawer : null,
       bottomNavigationBar: showBottomBar ? bottomNavigationBar : null,
