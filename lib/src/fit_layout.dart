@@ -1,7 +1,8 @@
 import 'package:fit_it/fit_it.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class FitLayout extends StatelessWidget {
+class FitLayout extends HookConsumerWidget {
   const FitLayout({
     super.key,
     this.mobile,
@@ -18,7 +19,7 @@ class FitLayout extends StatelessWidget {
   final WidgetBuilder? desktopLarge;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final size = useFitSize();
     Widget? child;
 
