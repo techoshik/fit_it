@@ -2,6 +2,7 @@ import 'package:fit_it/src/fit_breakpoints.dart';
 import 'package:fit_it/src/fit_size.dart';
 
 export 'package:fit_it/src/fit_breakpoints.dart';
+export 'package:fit_it/src/fit_grid.dart';
 export 'package:fit_it/src/fit_layout.dart';
 export 'package:fit_it/src/fit_scaffold.dart';
 export 'package:fit_it/src/fit_size.dart';
