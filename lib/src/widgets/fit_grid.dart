@@ -5,16 +5,16 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class FitGrid extends HookConsumerWidget {
   final int Function(FitSize size) columns;
-  final double spacing;
-  final WrapCrossAlignment crossAxisAlignment;
-  final EdgeInsetsGeometry? layoutPadding;
+  final double Function(FitSize size)? spacing;
+  final EdgeInsetsGeometry Function(FitSize size)? layoutPadding;
+  final WrapCrossAlignment Function(FitSize size)? crossAxisAlignment;
   final List<Widget> children;
 
   const FitGrid({
     super.key,
     required this.columns,
-    this.spacing = 0.0,
-    this.crossAxisAlignment = WrapCrossAlignment.center,
+    this.spacing,
+    this.crossAxisAlignment,
     this.layoutPadding,
     required this.children,
   });
@@ -23,23 +23,31 @@ class FitGrid extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final fitSize = useFitSize();
     final columnsCount = useState<int>(1);
+    final spacingValue = useState(0.0);
+    final padding = useState<EdgeInsetsGeometry?>(null);
+    final crossAlignment = useState(WrapCrossAlignment.center);
 
     useEffect(() {
       columnsCount.value = columns(fitSize);
+      spacingValue.value = spacing?.call(fitSize) ?? 0.0;
+      padding.value = layoutPadding?.call(fitSize);
+      crossAlignment.value =
+          crossAxisAlignment?.call(fitSize) ?? WrapCrossAlignment.center;
       return null;
     }, [fitSize]);
 
     return SingleChildScrollView(
-      padding: layoutPadding,
+      padding: padding.value,
       child: LayoutBuilder(
         builder: (context, constraints) {
+          final space = spacingValue.value;
           final width = (constraints.maxWidth / columnsCount.value) -
-              ((spacing * (columnsCount.value - 1)) / columnsCount.value);
+              ((space * (columnsCount.value - 1)) / columnsCount.value);
 
           return Wrap(
-            runSpacing: spacing,
-            spacing: spacing,
-            crossAxisAlignment: crossAxisAlignment,
+            runSpacing: space,
+            spacing: space,
+            crossAxisAlignment: crossAlignment.value,
             children: List.generate(
               children.length,
               (index) => SizedBox(width: width, child: children[index]),
