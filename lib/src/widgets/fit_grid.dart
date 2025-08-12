@@ -8,7 +8,7 @@ class FitGrid extends HookConsumerWidget {
   final double Function(FitSize size)? spacing;
   final EdgeInsetsGeometry Function(FitSize size)? layoutPadding;
   final WrapCrossAlignment Function(FitSize size)? crossAxisAlignment;
-  final List<Widget> Function(FitSize size) children;
+  final List<Widget> children;
 
   const FitGrid({
     super.key,
@@ -26,7 +26,6 @@ class FitGrid extends HookConsumerWidget {
     final spacingValue = useState(0.0);
     final padding = useState<EdgeInsetsGeometry?>(null);
     final crossAlignment = useState(WrapCrossAlignment.center);
-    final childrenList = useState<List<Widget>>(children(fitSize));
 
     useEffect(() {
       columnsCount.value = columns(fitSize);
@@ -34,7 +33,6 @@ class FitGrid extends HookConsumerWidget {
       padding.value = layoutPadding?.call(fitSize);
       crossAlignment.value =
           crossAxisAlignment?.call(fitSize) ?? WrapCrossAlignment.center;
-      childrenList.value = children(fitSize);
       return null;
     }, [fitSize]);
 
@@ -50,9 +48,10 @@ class FitGrid extends HookConsumerWidget {
             runSpacing: space,
             spacing: space,
             crossAxisAlignment: crossAlignment.value,
-            children: childrenList.value.map((e) {
-              return SizedBox(width: width, child: e);
-            }).toList(),
+            children: List.generate(
+              children.length,
+              (index) => SizedBox(width: width, child: children[index]),
+            ),
           );
         },
       ),
