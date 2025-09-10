@@ -1,6 +1,7 @@
 import 'package:fit_it/fit_it.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:hooks_riverpod/legacy.dart';
 
 final fitScaffoldDrawerProvider = StateProvider<DateTime?>((ref) => null);
 
@@ -33,6 +34,7 @@ class FitScaffold extends HookConsumerWidget {
   final double rightNavigationWidth;
 
   FitScaffold({
+    super.key,
     this.appBar,
     this.drawer,
     this.leftNavigation,
