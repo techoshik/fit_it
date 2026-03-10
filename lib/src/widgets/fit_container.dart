@@ -6,12 +6,20 @@ class FitContainer extends HookConsumerWidget {
   final FitSize? maxFitSize;
   final double? maxWidth;
   final Widget? child;
+  final Alignment? alignment;
 
-  const FitContainer({super.key, this.maxFitSize, this.maxWidth, this.child});
+  const FitContainer({
+    super.key,
+    this.maxFitSize,
+    this.maxWidth,
+    this.child,
+    this.alignment,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Center(
+    return Container(
+      alignment: alignment,
       child: ConstrainedBox(
         constraints: BoxConstraints(
           maxWidth: maxFitSize?.maxWidth ?? maxWidth ?? double.infinity,
