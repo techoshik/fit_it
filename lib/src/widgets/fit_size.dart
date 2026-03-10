@@ -65,6 +65,21 @@ enum FitSize {
     }
   }
 
+  double get maxWidth {
+    switch (this) {
+      case FitSize.mobile:
+        return FitIt.breakpoints.mobile;
+      case FitSize.tablet:
+        return FitIt.breakpoints.tablet;
+      case FitSize.laptop:
+        return FitIt.breakpoints.laptop;
+      case FitSize.desktop:
+        return FitIt.breakpoints.desktop;
+      case FitSize.desktopLarge:
+        return double.infinity;
+    }
+  }
+
   ///
   /// Use this method to parse the screen size from a width.
   /// Use default breakpoints if none are provided.
