@@ -6,14 +6,14 @@ class FitContainer extends HookConsumerWidget {
   final FitSize? maxFitSize;
   final double? maxWidth;
   final Widget? child;
-  final Alignment? alignment;
+  final Alignment alignment;
 
   const FitContainer({
     super.key,
     this.maxFitSize,
     this.maxWidth,
     this.child,
-    this.alignment,
+    this.alignment = Alignment.topCenter,
   });
 
   @override
