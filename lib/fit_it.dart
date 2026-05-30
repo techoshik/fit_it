@@ -1,3 +1,4 @@
+import 'package:fit_it/src/utils/future_x.dart';
 import 'package:fit_it/src/widgets/fit_breakpoints.dart';
 import 'package:fit_it/src/widgets/fit_size.dart';
 
@@ -5,6 +6,8 @@ export 'package:fit_it/src/utils/utils.dart';
 export 'package:fit_it/src/widgets/widgets.dart';
 
 abstract class FitIt {
+  static final futures = FitFutures.instance;
+
   static FitBreakpoints breakpoints = (
     mobile: 450,
     tablet: 800,
