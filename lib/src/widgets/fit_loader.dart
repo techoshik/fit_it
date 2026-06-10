@@ -7,8 +7,14 @@ final _fitLoaderProvider = StateProvider<bool>((ref) {
   return false;
 });
 
-extension RiverpodX on Ref {
-  void setLoading(bool value) {
+extension RefX on Ref {
+  void showFitLoader(bool value) {
+    read(_fitLoaderProvider.notifier).state = value;
+  }
+}
+
+extension WidgetRefX on WidgetRef {
+  void showFitLoader(bool value) {
     read(_fitLoaderProvider.notifier).state = value;
   }
 }
