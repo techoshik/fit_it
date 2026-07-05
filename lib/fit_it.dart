@@ -33,4 +33,18 @@ abstract class FitIt {
   static List<FitSize> bottomNavigationBarVisibleOn = [
     FitSize.mobile,
   ];
+
+  static FitSpacing defaultFitSpacing = (
+    small: 6,
+    medium: 12,
+    large: 24,
+  );
+
+  static FitSpacing defaultFitRadius = (
+    small: 8,
+    medium: 12,
+    large: 16,
+  );
 }
+
+typedef FitSpacing = ({double small, double medium, double large});
