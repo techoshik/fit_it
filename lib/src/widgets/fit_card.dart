@@ -26,6 +26,10 @@ enum FitCardStyle {
 
   /// Renders [FitCard.child] inside a bordered container, no elevation.
   outlined,
+
+  /// Renders [FitCard.child] inside a bordered container with a filled
+  /// surface — combines [card] and [outlined].
+  cardWithOutline,
 }
 
 /// Text style size used for [FitCard.title].
@@ -54,7 +58,8 @@ class FitCard extends StatelessWidget {
   /// Overrides the card's background color.
   final Color? backgroundColor;
 
-  /// Overrides the border color when [style] is [FitCardStyle.outlined].
+  /// Overrides the border color when [style] is [FitCardStyle.outlined] or
+  /// [FitCardStyle.cardWithOutline].
   final Color? outlineColor;
 
   /// Whether the card expands to fill the available vertical space.
@@ -87,7 +92,7 @@ class FitCard extends StatelessWidget {
     this.padding = FitCardSpacing.largeUniform,
     this.margin = FitCardSpacing.large,
     this.radius = FitCardSpacing.large,
-    this.style = FitCardStyle.card,
+    this.style = FitCardStyle.cardWithOutline,
     this.backgroundColor,
     this.outlineColor,
     this.expanded = false,
@@ -158,7 +163,8 @@ class FitCard extends StatelessWidget {
         ? RoundedRectangleBorder()
         : RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(radius),
-            side: style == FitCardStyle.outlined
+            side: (style == FitCardStyle.outlined ||
+                    style == FitCardStyle.cardWithOutline)
                 ? BorderSide(
                     color: outlineColor ?? context.colorScheme.outlineVariant,
                   )
@@ -169,6 +175,7 @@ class FitCard extends StatelessWidget {
         switch (style) {
           FitCardStyle.card => null,
           FitCardStyle.outlined => context.colorScheme.surface,
+          FitCardStyle.cardWithOutline => context.colorScheme.surfaceContainer,
           FitCardStyle.none => Colors.transparent,
         };
 
